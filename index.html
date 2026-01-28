@@ -1,19 +1,45 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>مشغل سبيستون الخاص</title>
+    <title>YTube Ad-Free Player</title>
     <style>
-        body { background: #111; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        video { width: 80%; border: 5px solid #ffcc00; border-radius: 15px; background: #000; }
+        body { background: #0f0f0f; color: #fff; font-family: sans-serif; text-align: center; padding: 20px; }
+        .player-container { max-width: 900px; margin: auto; }
+        input { padding: 12px; width: 60%; border-radius: 20px; border: none; outline: none; }
+        button { padding: 12px 25px; border-radius: 20px; border: none; background: #ff4444; color: white; cursor: pointer; font-weight: bold; }
+        #video-frame { width: 100%; aspect-ratio: 16/9; margin-top: 20px; border: 2px solid #333; border-radius: 10px; display: none; }
+        .info { font-size: 0.8em; color: #aaa; margin-top: 10px; }
     </style>
 </head>
 <body>
 
-    <video controls autoplay>
-        <source src="PASTE_DIRECT_LINK_HERE" type="video/mp4">
-        متصفحك لا يدعم تشغيل الفيديو.
-    </video>
+    <h2>🚀 مشغل يوتيوب بدون إعلانات</h2>
+    <div class="player-container">
+        <input type="text" id="urlInput" placeholder="ضع رابط الفيديو هنا...">
+        <button onclick="loadVideo()">شغل الآن</button>
+        
+        <iframe id="video-frame" allowfullscreen></iframe>
+        
+        <p class="info">ملاحظة: هذا المشغل يستخدم سيرفرات Piped لتخطي الإعلانات وحماية خصوصيتك.</p>
+    </div>
 
+    <script>
+        function loadVideo() {
+            const input = document.getElementById('urlInput').value;
+            const frame = document.getElementById('video-frame');
+            
+            // استخراج معرف الفيديو (ID)
+            const videoId = input.split('v=')[1]?.split('&')[0] || input.split('/').pop();
+
+            if (videoId) {
+                // نستخدم سيرفر piped.video لأنه يشيل الإعلانات تماماً ويعطيك المشغل خام
+                frame.src = `https://piped.video/embed/${videoId}`;
+                frame.style.display = "block";
+            } else {
+                alert("تأكد من الرابط يا صاحبي!");
+            }
+        }
+    </script>
 </body>
 </html>
