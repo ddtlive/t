@@ -2,68 +2,28 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أرشيف سبيستون (2000-2001)</title>
-    <script src="https://cdn.jsdelivr.net/npm/@webtor/embed-sdk-js/dist/index.min.js" charset="utf-8" async></script>
+    <title>أرشيف سبيستون الذهبي</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #1a1a1a;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-        .container {
-            max-width: 900px;
-            margin: auto;
-        }
-        #player {
-            width: 100%;
-            height: 500px;
-            background: #000;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-        }
-        h1 { color: #ffcc00; }
-        .info { margin-bottom: 20px; font-size: 1.1em; }
+        body { background-color: #000; color: #fff; text-align: center; font-family: sans-serif; padding-top: 50px; }
+        .video-box { width: 90%; max-width: 800px; margin: auto; border: 2px solid #ffcc00; border-radius: 15px; overflow: hidden; }
+        iframe { width: 100%; height: 450px; border: none; }
+        h1 { color: #ffcc00; text-shadow: 2px 2px #333; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>📺 أرشيف قناة سبيستون القديم</h1>
-    <p class="info">الفترة: من عام 2000 إلى 2001 (البث التجريبي)</p>
+    <h1>📺 أرشيف سبيستون (2000-2001)</h1>
+    <p>إذا ظهرت شاشة سوداء، انتظر قليلاً لتحميل ملفات الـ P2P</p>
 
-    <div id="player"></div>
-
-    <script>
-        window.webtor = window.webtor || [];
-        window.webtor.push({
-            id: 'player',
-            // هذا هو Hash التورنت الخاص بالرابط الذي أرسلته
-            infoHash: '93743992fdffe15b7e075a2e81c5b05c5072c1bc',
-            title: 'أرشيف سبيستون 2000-2001',
-            width: '100%',
-            height: '100%',
-            // لتشغيل الملف الذي اخترته أنت تحديداً كبداية
-            file: '/ارشيف قناة سبيستون من سنة 2000 الى 2001/ayam-albth-altgryby-lkna-albhryn-osbys-ton.mp4',
-            theme: 'dark',
-            features: {
-                continue:    true,
-                title:       true,
-                p2pProgress: true,
-                subtitles:   true,
-                settings:    true,
-                fullscreen:  true,
-            },
-        });
-    </script>
-
-    <div style="margin-top: 20px;">
-        <p>ملاحظة: المشغل يعتمد على تقنية P2P، قد يستغرق ثواني لتحميل البيانات.</p>
+    <div class="video-box">
+        <iframe 
+            src="https://webtor.io/93743992fdffe15b7e075a2e81c5b05c5072c1bc?embed=true" 
+            allowfullscreen 
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture">
+        </iframe>
     </div>
-</div>
+
+    <p style="margin-top: 20px; color: #888;">ملاحظة: تأكد من إغلاق أي مانع إعلانات (AdBlock) قد يعيق تشغيل المشغل.</p>
 
 </body>
 </html>
