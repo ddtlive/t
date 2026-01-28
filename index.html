@@ -2,85 +2,26 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>محرك بحث يوتيوب الحر</title>
+    <title>محرك بحث يوتيوب</title>
     <style>
-        body { background-color: #0f0f0f; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; }
-        .search-box { text-align: center; margin-bottom: 30px; position: sticky; top: 0; background: #0f0f0f; padding: 10px; z-index: 100; }
-        input { padding: 12px; width: 50%; border-radius: 25px; border: 1px solid #333; background: #222; color: white; outline: none; }
-        button { padding: 12px 25px; border-radius: 25px; border: none; background: #ff0000; color: white; cursor: pointer; font-weight: bold; }
-        
-        #results { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; max-width: 1200px; margin: auto; }
-        .video-card { background: #1e1e1e; border-radius: 10px; overflow: hidden; cursor: pointer; transition: 0.3s; }
-        .video-card:hover { transform: scale(1.05); background: #282828; }
-        .video-card img { width: 100%; display: block; }
-        .video-card h3 { font-size: 14px; padding: 10px; margin: 0; height: 40px; overflow: hidden; }
-
-        #player-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; flex-direction: column; align-items: center; justify-content: center; }
-        iframe { width: 80%; height: 70%; border: 2px solid #444; }
-        .close-btn { margin-bottom: 10px; padding: 10px 20px; background: white; color: black; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f9f9f9; }
+        .search-container { text-align: center; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        input[type="text"] { width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 10px; }
+        button { padding: 10px 20px; background-color: #ff0000; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        button:hover { background-color: #cc0000; }
     </style>
 </head>
 <body>
 
-    <div class="search-box">
-        <h2>🔍 ابحث وشاهد بدون إعلانات</h2>
-        <input type="text" id="query" placeholder="اكتب اسم الفيديو أو القناة...">
-        <button onclick="searchVideos()">بحث</button>
-    </div>
-
-    <div id="results"></div>
-
-    <div id="player-container">
-        <div class="close-btn" onclick="closePlayer()">إغلاق X</div>
-        <iframe id="main-player" src="" frameborder="0" allowfullscreen></iframe>
-    </div>
-
-    <script>
-        async function searchVideos() {
-            const query = document.getElementById('query').value;
-            const resultsDiv = document.getElementById('results');
-            if (!query) return alert("اكتب شيئاً للبحث!");
-
-            resultsDiv.innerHTML = "<p>جاري البحث عن الروائع...</p>";
-
-            try {
-                // استخدام API عام من Invidious لجلب النتائج
-                const response = await fetch(`https://inv.tux.rs/api/v1/search?q=${encodeURIComponent(query)}`);
-                const data = await response.json();
-
-                resultsDiv.innerHTML = "";
-                data.forEach(video => {
-                    if (video.type === "video") {
-                        const card = document.createElement('div');
-                        card.className = 'video-card';
-                        card.onclick = () => playVideo(video.videoId);
-                        card.innerHTML = `
-                            <img src="https://invidious.snopyta.org/vi/${video.videoId}/mqdefault.jpg" alt="thumbnail">
-                            <h3>${video.title}</h3>
-                        `;
-                        resultsDiv.appendChild(card);
-                    }
-                });
-            } catch (error) {
-                resultsDiv.innerHTML = "<p>حدث خطأ، جرب مرة أخرى لاحقاً.</p>";
-            }
-        }
-
-        function playVideo(id) {
-            const container = document.getElementById('player-container');
-            const player = document.getElementById('main-player');
-            // نستخدم Piped كونه الأفضل في تخطي الإعلانات
-            player.src = `https://piped.video/embed/${id}?autoplay=1`;
-            container.style.display = "flex";
-        }
-
-        function closePlayer() {
-            const container = document.getElementById('player-container');
-            const player = document.getElementById('main-player');
-            player.src = ""; // إيقاف الفيديو
-            container.style.display = "none";
-        }
-    </script>
+<div class="search-container">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" width="150" alt="YouTube Logo"><br><br>
+    
+    <form action="https://www.youtube.com/results" method="get" target="_blank">
+        <input type="text" name="search_query" placeholder="ابحث في يوتيوب..." required>
+        <br>
+        <button type="submit">بحث</button>
+    </form>
+</div>
 
 </body>
 </html>
